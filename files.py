@@ -85,6 +85,20 @@ def print_longest_words(filename):
             word = longestword(line)
             print(word)
 
+# PROMPT 8: Write a function named  print_names(filename)  for  data/scores.csv .
+# Requirements:
+# •	Use  with open(...) .
+# •	Skip the header with  next(...) .
+# •	Split each remaining line with  .split(",") .
+# •	Print names in this exact order:  First Last .
+
+def print_names(filename):
+    with open(filename) as reader:
+        header = next(reader)
+        for line in reader:
+            tokens = line.split(",")
+            print(tokens[1], tokens[0])
+        
 def main():
     # prompt 2
     print_line_lengths("data/supplies.txt") # calls "supplies" text file for manual testing
@@ -110,6 +124,9 @@ def main():
     print(longestword("red blue yellow"))  # "yellow"
     print(longestword("cat dog")) # "cat"
     print(longestword("   "))     
+
+    # prompt 8:
+    print_names("data/scores.csv")
 
 if __name__ == "__main__": # run-guard, prevents main from accidentally running when using pytest
     main()
