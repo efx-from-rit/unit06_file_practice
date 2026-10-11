@@ -11,6 +11,7 @@ def print_line_lengths(filename):
     with open(filename) as file: # opens the file stored in the "filename" string variable, makes it accessible
         for line in file: # parses every line in "file" with the "line" variable
             print(len(line)) # prints the number of characters in the current line
+    print("\n")
 
 # PROMPT 3: Write a function named  print_clean_supplies(filename) .
 # Requirements:
@@ -22,6 +23,7 @@ def print_clean_supplies(filename):
     with open(filename) as file:
         for line in file:
             print(line.strip())
+    print("\n")
 
 # PROMPT 4: Write a function named  count_supply(filename, target) .
 # Requirements:
@@ -31,19 +33,22 @@ def print_clean_supplies(filename):
 
 def count_supply(filename, target):
     line_count = 0
+    lower_target = target.lower()
     with open(filename) as file:
         for line in file:
-            cleaned = line.strip()
-            lowercase = cleaned.lower()
-            lower_target = target.lower()
+            lowercase = line.strip().lower()
             if lowercase == lower_target:
                 line_count += 1
     return line_count
 
 def main():
+    # prompt 2
     print_line_lengths("data/supplies.txt") # calls "supplies" text file for manual testing
+
+    # prompt 3
     print_clean_supplies("data/supplies.txt")
 
+    # prompt 4
     print(count_supply("data/supplies.txt", "pencils")) # 2
     print(count_supply("data/supplies.txt", "markers")) # 1
     print(count_supply("data/supplies.txt", "paper")) # 0
