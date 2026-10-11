@@ -121,6 +121,21 @@ def average_score(filename, column):
             except ValueError:
                 """ Skipping non-numerical value """
     return total / count
+
+# PROMPT 10: Write a function named  print_passing(filename, column, minimum) .
+# Requirements:
+# •	Read  scores.csv .
+# •	Skip the header.
+# •	Print  First Last  for every student whose score in  column  is at least  minimum .
+# •	Convert score fields to numbers before comparing.
+
+def print_passing(filename, column, minimum):
+    with open(filename) as file:
+        csv_reader = csv.reader(file)
+        next(csv_reader)
+        for line in csv_reader:
+            if float(line[column]) >= minimum:
+                print(line[1], line[0])
     
 def main():
     # prompt 2
@@ -155,6 +170,12 @@ def main():
     # prompt 9:
     print(average_score("data/scores.csv", 2))
     print(average_score("data/scores.csv", 3))
+    print()
+
+    # prompt 10:
+    print_passing("data/scores.csv", 2, 85) # Expected: Sam Lee
+    
+
 
 if __name__ == "__main__": # run-guard, prevents main from accidentally running when using pytest
     main()
