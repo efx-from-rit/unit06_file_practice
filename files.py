@@ -1,3 +1,5 @@
+import csv 
+
 # This is where you will complete prompts 1-10
 # PROMPT 1: Write the relative-path string needed to open supplies.txt from files.py
 """ data/supplies.txt  """
@@ -98,7 +100,28 @@ def print_names(filename):
         for line in reader:
             tokens = line.split(",")
             print(tokens[1], tokens[0])
-        
+
+# PROMPT 9: Write a function named  average_score(filename, column) .
+# Requirements:
+# •	 column  is a numeric index.
+# •	Skip the CSV header.
+# •	Convert score strings with  float(...) .
+# •	Return the average for the requested column.
+
+def average_score(filename, column):
+    total = 0
+    count = 0
+    with open(filename) as file:
+        csv_reader = csv.reader(file)
+        next(csv_reader)
+        for line in csv_reader:
+            try:
+                total += float(line[column])
+                count += 1
+            except ValueError:
+                """ Skipping non-numerical value """
+    return total / count
+    
 def main():
     # prompt 2
     print_line_lengths("data/supplies.txt") # calls "supplies" text file for manual testing
@@ -127,6 +150,11 @@ def main():
 
     # prompt 8:
     print_names("data/scores.csv")
+    print()
+
+    # prompt 9:
+    print(average_score("data/scores.csv", 2))
+    print(average_score("data/scores.csv", 3))
 
 if __name__ == "__main__": # run-guard, prevents main from accidentally running when using pytest
     main()
