@@ -72,6 +72,19 @@ def longestword(text):
             longest = token
     return longest
 
+# PROMPT 7: Write a function named  print_longest_words(filename) .
+# Requirements:
+# •	Use  with open(...) .
+# •	For each file line, call your  longestword(line)  function.
+# •	Print the returned longest word, one per line.
+# Do not rewrite the longest-word logic inside this function; call the helper function.
+
+def print_longest_words(filename):
+    with open(filename) as file:
+        for line in file:
+            word = longestword(line)
+            print(word)
+
 def main():
     # prompt 2
     print_line_lengths("data/supplies.txt") # calls "supplies" text file for manual testing
